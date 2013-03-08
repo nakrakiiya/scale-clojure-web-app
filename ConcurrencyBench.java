@@ -51,14 +51,14 @@ echo 9999999 | sudo tee /proc/sys/fs/file-max
 public class ConcurrencyBench {
 
     final static int PER_IP = 20000;
-    final static InetSocketAddress ADDRS[] = new InetSocketAddress[30];
+    final static InetSocketAddress ADDRS[] = new InetSocketAddress[100];
     // 600k concurrent connections
     final static int CONCURENCY = PER_IP * ADDRS.length;
 
     static {
         // for i in `seq 200 240`; do sudo ifconfig eth0:$i 192.168.1.$i up ; done
         final int PORT = 8000;
-        final int IP_START = 200;
+        final int IP_START = 110;
         for (int i = 0; i < ADDRS.length; i++) {
             ADDRS[i] = new InetSocketAddress("192.168.1." + (i + IP_START), PORT);
         }
