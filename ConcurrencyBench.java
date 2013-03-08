@@ -74,7 +74,8 @@ public class ConcurrencyBench {
     }
 
     public static int randidelTime() {
-        int ms = 5000 + r.nextInt(45000); // 5s ~ 50s
+//        int ms = 5000 + r.nextInt(45000); // 5s ~ 50s
+        int ms = 10000 + r.nextInt(90000); 
         return ms;
     }
 
@@ -129,7 +130,8 @@ public class ConcurrencyBench {
             long now = System.currentTimeMillis();
 
             // connect to server, 100 at a time
-            for (int i = 0; i < 100 && opened < CONCURENCY; i++) {
+            final int connections_one_time = 100;
+            for (int i = 0; i < connections_one_time && opened < CONCURENCY; i++) {
                 SocketChannel ch = SocketChannel.open();
                 ch.configureBlocking(false);
                 ch.socket().setReuseAddress(true);
